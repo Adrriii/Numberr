@@ -1,0 +1,45 @@
+﻿FormatVersion: 7
+Name: "Numberr 1"
+Script: "Numberr"
+Config:
+  ScrollSpeed:
+    Type: "System.Int32"
+    Value: "14"
+  HitPosition:
+    Type: "System.Int32"
+    Value: "0"
+  ApearsPosition:
+    Type: "System.Int32"
+    Value: "640"
+  ColumnWidth:
+    Type: "System.Int32"
+    Value: "30"
+  HitObjectWidth:
+    Type: "System.Int32"
+    Value: "25"
+  FadeIn:
+    Type: "System.Double"
+    Value: "0"
+  Hidden:
+    Type: "System.Double"
+    Value: "0"
+  RandomSeed:
+    Type: "System.Int32"
+    Value: "0"
+    DisplayName: "Random seed"
+Layers:
+  d8395ecb93964e30845de64c843b357f:
+    Name: "Overlay"
+    OsbLayer: Background
+    DiffSpecific: No
+    Visible: Yes
+  ccb3c72af4ca46ca83f35d4300881cac:
+    Name: "Receptor"
+    OsbLayer: Overlay
+    DiffSpecific: No
+    Visible: Yes
+  9f105590f37b4f8dafb4b89dd5b39382:
+    Name: "HitObject"
+    OsbLayer: Overlay
+    DiffSpecific: No
+    Visible: Yes
