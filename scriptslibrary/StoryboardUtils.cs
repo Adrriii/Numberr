@@ -7,39 +7,42 @@ using System.Linq;
 
 namespace StorybrewScripts.scriptslibrary
 {
-	public static class StoryboardUtils 
+	public class StoryboardUtils 
 	{
-		public static StoryboardObjectGenerator storyboardWorker;
+		public StoryboardObjectGenerator storyboardWorker;
 
-		public static int scriptStartTime = -3000;
+		public int scriptStartTime = -4000;
 
-		public static int scriptEndTime;
+		public int scriptEndTime;
+		public int scriptEndTimeQuit;
 
-		public static int scriptStartFadeTime = -2000;
-		public static int scriptEndFadeTime = -1500;
+		public int scriptStartFadeTime = -3500;
+
+		public int scriptEndFadeTime = -3000;
 
 		public static int kizunaColumnCount;
 
-		public static void Init(StoryboardObjectGenerator storyboardWorker, Beatmap beatmap) {
-            scriptEndTime = (int) beatmap.HitObjects.Last().EndTime + 5000;
+		public StoryboardUtils(StoryboardObjectGenerator storyboard, Beatmap beatmap) {
+            scriptEndTime = (int) beatmap.HitObjects.Last().EndTime;
+			scriptEndTimeQuit = scriptEndTime - scriptStartTime;
 			kizunaColumnCount = (int) Math.Floor(beatmap.CircleSize);
-			StoryboardUtils.storyboardWorker = storyboardWorker;
+			storyboardWorker = storyboard;
 		}
-		public static void InitBlackBG(int audioDurationSeconds) {
+		public void InitBlackBG() {
             StoryboardLayer layer = storyboardWorker.GetLayer("Overlay");
 			OsbSprite sprite = layer.CreateSprite("sb/utils/px.png", OsbOrigin.Centre);
 
             sprite.ScaleVec(scriptStartTime, 854, 480);
-            sprite.Fade(scriptStartTime, (int)audioDurationSeconds, 1, 1);
+            sprite.Fade(scriptStartTime, scriptEndTimeQuit, 1, 1);
 		}
 
-		public static void SetBackgroundAsMap(Beatmap beatmap, double opacity) {
+		public void SetBackgroundAsMap(Beatmap beatmap, double opacity) {
             StoryboardLayer layer = storyboardWorker.GetLayer("Overlay");
 			OsbSprite sprite = layer.CreateSprite(beatmap.BackgroundPath, OsbOrigin.Centre);
 
             sprite.Scale(scriptStartTime, 480.0f / storyboardWorker.GetMapsetBitmap(beatmap.BackgroundPath).Height);
             sprite.Fade(scriptStartTime - 500, scriptStartTime, 0, opacity);
-            sprite.Fade(scriptEndTime, scriptEndTime + 500, opacity, 0);
+            sprite.Fade(scriptEndTimeQuit, scriptEndTimeQuit, opacity, 0);
 		}
 
 		public static int GetColumnFromHitObjectX(OsuHitObject hitabject) {

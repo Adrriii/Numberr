@@ -52,7 +52,6 @@
   </Target>
   -->
   <ItemGroup>
-    <Compile Include="Background.cs" />
     <Compile Include="Numberr.cs" />
     <Compile Include="scriptslibrary/MathUtils.cs" />
     <Compile Include="scriptslibrary/NumberPlayfield.cs" />
